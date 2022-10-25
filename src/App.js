@@ -4,8 +4,7 @@ import TitleBar from './components/title-bar';
 import External from './components/external-links';
 import NavBar from './components/NavBar';
 import Game from './components/Game'
-import InventoryList from './components/inventory-list';
-import Introduction from './components/introduction';
+
 
 function App() {
 
@@ -29,8 +28,6 @@ function App() {
       <TitleBar />
       <NavBar />
       <Game />
-      <Introduction />
-      <InventoryList />
       <External />
     </div>
   );
