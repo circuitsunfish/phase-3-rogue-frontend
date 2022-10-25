@@ -43,6 +43,7 @@
   align-items: center;
   justify-content: center;
   border-style: solid;
+  margin: 1%;
 }
 
 .NavBar_links {
@@ -56,4 +57,20 @@
 #Game_Container {
   border-style: solid;
   border-color: blue;
+  margin: 1%;
+  padding: 1%;
+}
+
+#inventory-list {
+  border-style: solid;
+  border-color: red;
+  padding: 1%;
+  margin: 1%;
+}
+
+#introduction {
+  border-style: solid;
+  border-color: green;
+  padding: 1%;
+  margin: 1%;
 }
