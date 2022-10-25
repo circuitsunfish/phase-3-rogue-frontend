@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from "react"
+import TitleBar from './components/title-bar';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <TitleBar />
     </div>
   );
 }
