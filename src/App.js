@@ -3,6 +3,7 @@ import './App.css';
 import React, { useEffect, useState } from "react"
 import TitleBar from './components/title-bar';
 import External from './components/external-links';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
     <div className="App">
       <TitleBar />
       <External />
+      <NavBar />
     </div>
   );
 }

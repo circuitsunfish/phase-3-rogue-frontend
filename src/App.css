@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+#NavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+}
+
+.NavBar_links {
+
+  margin-left: 5%;
+  margin-right: 5%;
+  border-style: solid;
+  padding: 1%;
+}
