@@ -4,16 +4,14 @@ import React, {useEffect, useState} from "react"
 
 function App() {
 
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState({session_name: ""});
 
   useEffect(() => {
-    fetch(`http://localhost:9292/start_game`, {
-      mode: 'no-cors'
-    })
-      .then((r) => r.json())
+    fetch(`http://localhost:9292/start_game`)
+    .then((r) => r.json())
       .then((game) =>  {
-        console.log(game)
-        setGame(game)}
+        setGame(game)
+        console.log(game)}
         );
   }, []);
   
@@ -25,7 +23,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {game.session_name}
+          {game["session_name"]}
         </p>
         <a
           className="App-link"
