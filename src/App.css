@@ -79,9 +79,13 @@
 #gameareaPlaceholder {
   border-style: solid;
   border-color: orange;
+  padding: 1%;
+  margin: 1%;
 }
 
 #howToPlay {
   border-style: solid;
   border-color: orangered;
+  padding: 1%;
+  margin: 1%;
 }
