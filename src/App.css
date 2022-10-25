@@ -52,3 +52,8 @@
   border-style: solid;
   padding: 1%;
 }
+
+#Game_Container {
+  border-style: solid;
+  border-color: blue;
+}

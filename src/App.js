@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import TitleBar from './components/title-bar';
 import External from './components/external-links';
 import NavBar from './components/NavBar';
+import Game from './components/Game'
 
 function App() {
 
@@ -25,8 +26,9 @@ function App() {
   return (
     <div className="App">
       <TitleBar />
-      <External />
       <NavBar />
+      <Game />
+      <External />
     </div>
   );
 }
