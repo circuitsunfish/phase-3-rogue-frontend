@@ -4,7 +4,7 @@ import TitleBar from './components/title-bar';
 import External from './components/external-links';
 import NavBar from './components/NavBar';
 import Game from './components/Game'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

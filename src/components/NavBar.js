@@ -1,15 +1,23 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from "react-bootstrap/Navbar";
 
-function NavBar(){
+function NavBar() {
     return (
-        <div>
-            <span id="NavBar">
-                <p class="NavBar_links">New Game</p>
-                <p class="NavBar_links">Load Game</p>
-                <p class="NavBar_links">Save Game</p>
-                <p class="NavBar_links">Options</p>
-            </span>
-        </div>
+        <Navbar bg="dark" variant="dark" expand="lg">
+            <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#newgame">New Game</Nav.Link>
+                        <Nav.Link href="#loadgame">Load Game</Nav.Link>
+                        <Nav.Link href="#savegame">Save Game</Nav.Link>
+                        <Nav.Link href="#option">Options</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
