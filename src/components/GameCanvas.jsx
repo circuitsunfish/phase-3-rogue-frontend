@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 
-const GameCanvas = props => {
+const GameCanvas = () => {
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
+
+    console.log("rendering game canvas");
 
     const handleKeyPress = useCallback((event) => {
         console.log(`Key pressed: ${event.key}`);
@@ -97,7 +99,7 @@ const GameCanvas = props => {
     }, [draw])
 
 
-    return <canvas height='600px' width='600px' ref={canvasRef} {...props} />
+    return <canvas height='600px' width='600px' ref={canvasRef} />
 }
 
 export default GameCanvas;
