@@ -1,11 +1,18 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
 
 const GameCanvas = props => {
+    const [player_x, setPlayer_x] = useState(85);
+    const [player_y, setPlayer_y] = useState(75);
 
+    const handleKeyPress = useCallback((event) => {
+        console.log(`Key pressed: ${event.key}`);
+        handleKey(event);
+        console.log({ player_x, player_y });
+    }, []);
     const canvasRef = useRef(null)
 
     const draw = ctx => {
-        ctx.fillStyle = '#000000'
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
         //experimental grid
 
@@ -29,80 +36,55 @@ const GameCanvas = props => {
 
         //experimentalmoji
 
-        ctx.fillText('🥷', 45, 35);
-        ctx.fillText('🥷', 65, 55);
-        ctx.fillText('🥷', 85, 75);
+        ctx.fillText('🥷', player_x, player_y);
+
 
         ctx.fillText(`Canvas Height: ${ctx.canvas.height}`, 10, 10)
         ctx.fillText(`Canvas Width: ${ctx.canvas.width}`, 20, 20)
     }
 
-
     // controls start
-
-    //https://github.com/Defernus/favicon-snake/blob/master/main.js
-    document.addEventListener('keydown', handleKey);
-
-
-    const TOP = 0;
-    const RIGHT = 1;
-    const BOTTOM = 2;
-    const LEFT = 3;
-
-    const changeDir = (newDir) => {
-        if (dirWasChanged) {
-            return;
-        }
-        if (dir === newDir) {
-            return;
-        }
-        if (dir === TOP && newDir === BOTTOM) {
-            return;
-        }
-        if (dir === RIGHT && newDir === LEFT) {
-            return;
-        }
-        if (dir === BOTTOM && newDir === TOP) {
-            return;
-        }
-        if (dir === LEFT && newDir === RIGHT) {
-            return;
-        }
-        dirWasChanged = true;
-        dir = newDir;
-    }
 
     const handleKey = (e) => {
         switch (e.keyCode) {
             case 38:
             case 87:
-                changeDir(TOP);
+                // player_y = player_y - 20;
+                setPlayer_y(player_y - 20);
+                console.log("top")
                 break;
             case 68:
             case 39:
-                changeDir(RIGHT);
+                // player_x = player_x + 20;
+                setPlayer_x(player_x + 20);
+                console.log("right")
                 break;
             case 83:
             case 40:
-                changeDir(BOTTOM);
+                // player_y = player_y + 20;
+                setPlayer_y(player_y + 20);
+                console.log("bottom")
                 break;
             case 65:
             case 37:
-                changeDir(LEFT);
+                // player_x = player_x - 20;
+                setPlayer_x(player_x - 20);
+                console.log("left")
                 break;
         }
     };
 
+    useEffect(() => {
+        // attach the event listener
+        document.addEventListener('keydown', handleKeyPress);
+
+        // remove the event listener
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [handleKeyPress]);
 
     //controls end
-
-
-
-
-
-
-
-
 
 
     useEffect(() => {
@@ -113,6 +95,7 @@ const GameCanvas = props => {
         //Our draw come here
         draw(context)
     }, [draw])
+
 
     return <canvas height='600px' width='600px' ref={canvasRef} {...props} />
 }
