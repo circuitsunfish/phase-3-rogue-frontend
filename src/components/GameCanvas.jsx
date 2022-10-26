@@ -28,7 +28,7 @@ const GameCanvas = ({ player_x, player_y }) => {
         // end grid
 
         //experimentalmoji
-
+        //TODO: replace ninja with player's entity emoji
         ctx.fillText('🥷', player_x, player_y);
 
 
