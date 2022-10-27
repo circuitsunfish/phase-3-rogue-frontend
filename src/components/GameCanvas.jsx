@@ -30,6 +30,7 @@ const GameCanvas = ({ canvasSize, movementStep, player_x, player_y, entities }) 
 
         //experimentalmoji
         //TODO: replace ninja with player's entity emoji
+        //make func to draw with f(item, x_coord, y_coord)
         entities.forEach((item) => {
             ctx.fillText(item, player_x, player_y);
         })
