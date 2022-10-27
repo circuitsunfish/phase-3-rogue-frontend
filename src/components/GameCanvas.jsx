@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 
-const GameCanvas = ({ player_x, player_y }) => {
+const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
     console.log({ player_x })
     const canvasRef = useRef(null)
 
@@ -10,19 +10,19 @@ const GameCanvas = ({ player_x, player_y }) => {
         //experimental grid
 
         //verticals
-        for (let i = 0; i < ctx.canvas.width / 20; i++) {
+        for (let i = 0; i < ctx.canvas.width / movementStep; i++) {
             ctx.beginPath();
             ctx.strokeStyle = 'blue';
-            ctx.moveTo(i * 20, 0); //iterator * 10 for x, 0 for y hopefully
-            ctx.lineTo(i * 20, ctx.canvas.height);
+            ctx.moveTo(i * movementStep, 0); //iterator * 10 for x, 0 for y hopefully
+            ctx.lineTo(i * movementStep, ctx.canvas.height);
             ctx.stroke();
         }
         //horizontals
-        for (let i = 0; i < ctx.canvas.height / 20; i++) {
+        for (let i = 0; i < ctx.canvas.height / movementStep; i++) {
             ctx.beginPath();
             ctx.strokeStyle = 'green';
-            ctx.moveTo(0, i * 20); //iterator * 10 for y, 0 for x hopefully
-            ctx.lineTo(ctx.canvas.width, i * 20);
+            ctx.moveTo(0, i * movementStep); //iterator * 10 for y, 0 for x hopefully
+            ctx.lineTo(ctx.canvas.width, i * movementStep);
             ctx.stroke();
         }
         // end grid
@@ -33,7 +33,7 @@ const GameCanvas = ({ player_x, player_y }) => {
 
 
         ctx.fillText(`Canvas Height: ${ctx.canvas.height}`, 10, 10)
-        ctx.fillText(`Canvas Width: ${ctx.canvas.width}`, 20, 20)
+        ctx.fillText(`Canvas Width: ${ctx.canvas.width}`, movementStep, movementStep)
     }
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const GameCanvas = ({ player_x, player_y }) => {
     }, [draw])
 
 
-    return <canvas height='600px' width='600px' ref={canvasRef} />
+    return <canvas height={canvasSize + 'px'} width={canvasSize + 'px'} ref={canvasRef} />
 }
 
 export default GameCanvas;
