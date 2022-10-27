@@ -17,7 +17,7 @@ export default function InventoryList({ gameInfo }) {
         });
     }
 
-
+    //entity information by looping over the whole entity list and using the key to access the entity information
 
 
 
