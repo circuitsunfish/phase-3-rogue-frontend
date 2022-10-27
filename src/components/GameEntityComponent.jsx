@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 113295a5141f320d74e51c865c7c6fea5346f71e
 function GameEntityCanvasItem() {
 
 }

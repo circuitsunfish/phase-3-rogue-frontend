@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { gameEntityCanvasItem } from './GameEntityComponent'
 
-const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
+const GameCanvas = ({ canvasSize, movementStep, player_x, player_y, entities }) => {
     const canvasRef = useRef(null)
 
     const draw = ctx => {
@@ -30,7 +30,11 @@ const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
 
         //experimentalmoji
         //TODO: replace ninja with player's entity emoji
-        ctx.fillText('🥷', player_x, player_y);
+        //make func to draw with f(item, x_coord, y_coord)
+        entities.forEach((item) => {
+            ctx.fillText(item, player_x, player_y);
+        })
+        // ctx.fillText('🥷', player_x, player_y);
 
 
         ctx.fillText(`Canvas Height: ${ctx.canvas.height}`, 10, 10)

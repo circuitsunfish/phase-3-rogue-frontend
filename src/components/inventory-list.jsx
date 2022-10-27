@@ -24,7 +24,6 @@ export default function InventoryList({ gameInfo }) {
         <Card id="entity-list" style={{ width: '12rem', margin: '1rem' }}>
             <Card.Title>Dungeon Population: </Card.Title>
             <ul className="list-group list-group-flush">
-                {console.log(gameInfo)}
                 {listEntities(gameInfo)}
             </ul>
         </Card>
