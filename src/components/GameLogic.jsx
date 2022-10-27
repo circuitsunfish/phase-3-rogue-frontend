@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
+import { useDebugValue } from 'react';
 import GameCanvas from './GameCanvas'
 import { GameEntityListItem } from "./GameEntityListItem";
+import GameEnd from './GameEnd';
 
 
 export default function GameLogic({ gameInfo, entities }) {
@@ -14,6 +16,9 @@ export default function GameLogic({ gameInfo, entities }) {
     const [bed_x, setBed_x] = useState(545);
     const [bed_y, setBed_y] = useState(555);
 
+    
+    const [gameEndCon, setGameEndCon] = useState({isDead: false, isWin: false});
+    const [gameEndDisplay, setGameEndDisplay] = useState(false);
     const [allEntities, setAllEntities] = useState(null);
 
     const canvasSize = 600;
@@ -31,11 +36,21 @@ export default function GameLogic({ gameInfo, entities }) {
 
         if (xComparisonClown && yComparisonClown) {
             console.log("you got clowned");
+            setGameEndCon({...gameEndCon, isDead: true})
+            console.log(gameEndCon)
         }
         else if (xComparisonBed && yComparisonBed) {
             console.log("escaped to neverland");
+            setGameEndCon({...gameEndCon, isWin: true})
+            console.log(gameEndCon)
         }
     }, [bed_x, bed_y, clown_x, clown_y, player_x, player_y]);
+
+    useEffect(() => {
+        setGameEndDisplay(!gameEndDisplay)
+    },[gameEndCon])
+
+    
 
     // console.log(allEntities)
 
@@ -113,9 +128,11 @@ export default function GameLogic({ gameInfo, entities }) {
     // console.log(gameInfo.entities)
 
     //end get entities
-
-
-    return <GameCanvas
+    
+    
+    return (
+        gameEndDisplay ? 
+    <GameCanvas
         canvasSize={canvasSize}
         entities={entities}
         movementStep={movementStep}
@@ -123,8 +140,12 @@ export default function GameLogic({ gameInfo, entities }) {
         bed_x={bed_x} bed_y={bed_y}
         clown_x={clown_x} clown_y={clown_y}
         player_x={player_x} player_y={player_y}
-
     />
+
+    :
+
+    <GameEnd />
+    )
 
 
 }
