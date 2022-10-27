@@ -28,7 +28,6 @@ export default function Game({ gameInfo }) {
     // console.log(entityListDisplay)
     return (
         <div id="Game_Container">
-            This is our container for game components
             <GameLogic gameInfo={gameInfo} entities={entityInfoArr} />
             <HowToPlay />
             <Introduction />
