@@ -3,12 +3,12 @@ import GameLogic from "./GameLogic";
 import HowToPlay from "./How2Play"
 import InventoryList from './inventory-list';
 import Introduction from './introduction';
-import { GameEntityListItem } from "./GameEntityComponent";
+import { GameEntityListItem } from "./GameEntityListItem";
 
 export default function Game({ gameInfo }) {
     const entityInfoArr = [];
     function listEntities(gameInfo_e) {
-        
+
         if (!gameInfo) {
             return null;
         }
@@ -18,7 +18,7 @@ export default function Game({ gameInfo }) {
         })
     }
 
-    
+
     listEntities(gameInfo)
     console.log(entityInfoArr)
 
@@ -29,7 +29,7 @@ export default function Game({ gameInfo }) {
     return (
         <div id="Game_Container">
             This is our container for game components
-            <GameLogic gameInfo={gameInfo} entities={entityInfoArr}/>
+            <GameLogic gameInfo={gameInfo} entities={entityInfoArr} />
             <HowToPlay />
             <Introduction />
             <InventoryList gameInfo={gameInfo} />

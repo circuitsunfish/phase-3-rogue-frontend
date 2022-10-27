@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import GameCanvas from './GameCanvas'
-import { GameEntityListItem } from "./GameEntityComponent";
+import { GameEntityListItem } from "./GameEntityListItem";
 
 
 export default function GameLogic({ gameInfo, entities }) {
