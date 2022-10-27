@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
-import { gameEntityCanvasItem } from './GameEntityComponent'
+import { gameEntityCanvasItem } from './CanvasGameEntityComponent'
 
 const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
     const canvasRef = useRef(null)
