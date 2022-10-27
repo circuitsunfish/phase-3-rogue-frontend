@@ -10,18 +10,19 @@ const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
         //experimental grid
 
         //verticals
-        for (let i = 0; i < ctx.canvas.width / movementStep; i++) {
+        for (let i = 0; i <= ctx.canvas.width / movementStep; i++) {
             ctx.beginPath();
             ctx.strokeStyle = 'blue';
-            ctx.moveTo(i * movementStep, 0); //iterator * 10 for x, 0 for y hopefully
+            ctx.moveTo(i * movementStep, 0); //draw the grid width to allow one step
             ctx.lineTo(i * movementStep, ctx.canvas.height);
             ctx.stroke();
         }
+
         //horizontals
-        for (let i = 0; i < ctx.canvas.height / movementStep; i++) {
+        for (let i = 0; i <= ctx.canvas.height / movementStep; i++) {
             ctx.beginPath();
             ctx.strokeStyle = 'green';
-            ctx.moveTo(0, i * movementStep); //iterator * 10 for y, 0 for x hopefully
+            ctx.moveTo(0, i * movementStep); //draw the grid height to allow one step
             ctx.lineTo(ctx.canvas.width, i * movementStep);
             ctx.stroke();
         }

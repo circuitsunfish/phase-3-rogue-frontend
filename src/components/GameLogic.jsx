@@ -30,7 +30,7 @@ export default function GameLogic() {
     function checkForCanvasBoundary(x, add) {
         let tooCloseErr = "not true, too close";
         console.log({ x, add })
-        if (add && x) {
+        if (add && x) { //right
             let addX = player_x + movementStep
 
             if (addX < canvasSize) {
@@ -41,12 +41,14 @@ export default function GameLogic() {
                 console.log({ tooCloseErr })
             }
         }
-        else if (!add && x) {
+        else if (!add && x) { //left
             if (player_x > movementStep) {
                 console.log({ player_x })
                 setPlayer_x((currentX) => {
-                    if (currentX > movementStep)
+                    if (currentX > movementStep) {
+                        console.log("current x - movementStep: " + (currentX - movementStep))
                         return currentX - movementStep
+                    }
                 });
             }
             else {
