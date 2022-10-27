@@ -28,35 +28,21 @@ export default function GameLogic() {
      * @param {boolean} add - if true, we will check for positive movement. if false, we will check for negative movement.
      */
     function checkForCanvasBoundary(x, add) {
-        let tooCloseErr = "not true, too close";
-        console.log({ x, add })
-        if (add && x) { //right
-            let addX = player_x + movementStep
 
-            if (addX < canvasSize) {
-                console.log(addX)
-                setPlayer_x((currentX) => currentX + movementStep);
-            }
-            else {
-                console.log({ tooCloseErr })
-            }
-        }
-        else if (!add && x) { //left
-            if (player_x > movementStep) {
-                console.log({ player_x })
-                setPlayer_x((currentX) => {
-                    if (currentX > movementStep) {
-                        console.log("current x - movementStep: " + (currentX - movementStep))
-                        return currentX - movementStep
-                    }
-                });
-            }
-            else {
-                console.log({ tooCloseErr })
-            }
+        //TODO: vertical bounding moves player off the nice alignment in the grid.
+        const lowerbound = 0 + movementStep * 0.25;
+        const upperbound = canvasSize - movementStep * 0.75;
+
+        const arithmaticMovement = add ? movementStep : -movementStep;
+        if (x) {
+            setPlayer_x((currentX) => {
+                return Math.min(Math.max(currentX + arithmaticMovement, lowerbound), upperbound)
+            });
         }
         else {
-            console.log("not true, can't move")
+            setPlayer_y((currentY) => {
+                return Math.min(Math.max(currentY + arithmaticMovement, lowerbound), upperbound)
+            });
         }
 
 
@@ -67,29 +53,19 @@ export default function GameLogic() {
         switch (e.keyCode) {
             case 38:
             case 87:
-                // player_y = player_y - 20;
-                setPlayer_y((currentY) => currentY - 20);
-                console.log("top")
+                checkForCanvasBoundary(false, false);
                 break;
             case 68:
             case 39:
-                // player_x = player_x + 20;
-                setPlayer_x((currentX) => currentX + 20);
-                // checkForCanvasBoundary(true, true);
-                console.log("right")
+                checkForCanvasBoundary(true, true);
                 break;
             case 83:
             case 40:
-                // player_y = player_y + 20;
-                setPlayer_y((currentY) => currentY + 20);
-                console.log("bottom")
+                checkForCanvasBoundary(false, true);
                 break;
             case 65:
             case 37:
-                // player_x = player_x - 20;
-                // setPlayer_x((currentX) => currentX - 20);
                 checkForCanvasBoundary(true, false);
-                console.log("left")
                 break;
         }
     };
