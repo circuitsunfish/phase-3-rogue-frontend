@@ -12,12 +12,12 @@ export default function External() {
                 </ul>
                 <Card.Title>Credits</Card.Title>
                 <strong>Proudly Made By:</strong>
-                <ul>
+                <ul class="list-group list-group-flush">
                     <li class="list-group-item"><a href="https://www.linkedin.com/in/seo-choi-dev/">Seo Choi</a></li>
                     <li class="list-group-item"><a href="https://ashtonmackenzie.com/">Ashton MacKenzie</a></li>
                 </ul>
                 <strong>Special Thanks To:</strong>
-                <ul>
+                <ul class="list-group list-group-flush">
                     <li class="list-group-item"> <a href="https://www.linkedin.com/in/reiarmenia/">Rei</a>, for React support and encouragement</li>
                     <li class="list-group-item"> <a href="https://www.linkedin.com/in/mjsonofharry/"> Maddie</a>, for game design support and encouragement</li>
                 </ul>

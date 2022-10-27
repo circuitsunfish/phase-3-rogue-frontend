@@ -8,14 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  const [game, setGame] = useState({ session_name: "" });
+  const [gameInfo, setGame] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:9292/start_game`)
       .then((r) => r.json())
-      .then((game) => {
-        setGame(game)
-        console.log(game)
+      .then((gameInfo) => {
+        setGame(gameInfo)
+        console.log(gameInfo)
       }
       );
   }, []);
@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <TitleBar />
       <NavBar />
-      <Game />
+      <Game gameInfo={gameInfo} />
       <External />
     </div>
   );

@@ -4,17 +4,17 @@ import HowToPlay from "./How2Play"
 import InventoryList from './inventory-list';
 import Introduction from './introduction';
 
-export default function Game() {
+export default function Game({ gameInfo }) {
 
 
 
     return (
         <div id="Game_Container">
             This is our container for game components
-            <GameLogic />
+            <GameLogic gameInfo={gameInfo} />
             <HowToPlay />
             <Introduction />
-            <InventoryList />
+            <InventoryList gameInfo={gameInfo} />
         </div>
     )
 }

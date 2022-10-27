@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react'
 import GameCanvas from './GameCanvas'
 
 
-export default function GameLogic() {
+export default function GameLogic({ gameInfo }) {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
@@ -75,18 +75,8 @@ export default function GameLogic() {
 
     //get entities to load into the game
 
-    useEffect(() => {
-        fetch(`http://localhost:9292/get_entities`)
-            .then((r) => {
-                let responseJson = r.json();
-                return responseJson;
-            })
-            .then((entities) => {
-                setAllEntities(entities)
-                console.log(entities)
-            }
-            );
-    }, []);
+    //grab this out of the start game json response
+    // console.log(gameInfo.entities)
 
     //end get entities
 
