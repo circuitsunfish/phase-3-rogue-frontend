@@ -14,9 +14,6 @@ export default function GameLogic({ gameInfo, entities }) {
     const [bed_x, setBed_x] = useState(545);
     const [bed_y, setBed_y] = useState(555);
 
-    console.log({ player_x, player_y });
-
-
     const [allEntities, setAllEntities] = useState(null);
 
     const canvasSize = 600;
@@ -52,35 +49,51 @@ export default function GameLogic({ gameInfo, entities }) {
 
         switch (entity) {
             case "🤡":
-                x ? setClown_x((currentX) => xSetter(currentX)) : setClown_y((currentY) => ySetter(currentY))
+                x ? setClown_x((currentX) => xSetter(currentX)) : setClown_y((currentY) => ySetter(currentY));
                 break;
             case "😎":
-                x ? setPlayer_x((currentX) => xSetter(currentX)) : setPlayer_y((currentY) => ySetter(currentY))
+                checkforEntityCollision();
+                x ? setPlayer_x((currentX) => xSetter(currentX)) : setPlayer_y((currentY) => ySetter(currentY));
                 break;
         }
 
+    }
+
+    function checkforEntityCollision() {
+        console.log({ player_x, clown_x });
+        let xComparisonBed = player_x === bed_x;
+        let yComparisonBed = player_y === bed_y;
+        let xComparisonClown = player_x === clown_x;
+        let yComparisonClown = player_y === clown_y;
+
+        if (xComparisonClown && yComparisonClown) {
+            console.log("you got clowned");
+        }
+        else if (xComparisonBed && yComparisonBed) {
+            console.log("escaped to neverland");
+        }
     }
     const handleKey = (e) => {
         switch (e.keyCode) {
             case 38:
             case 87:
                 checkForCanvasBoundary(false, false, "😎");
-                checkForCanvasBoundary(false, false, "🤡");
+                // checkForCanvasBoundary(false, false, "🤡");
                 break;
             case 68:
             case 39:
                 checkForCanvasBoundary(true, true, "😎");
-                checkForCanvasBoundary(true, true, "🤡");
+                // checkForCanvasBoundary(true, true, "🤡");
                 break;
             case 83:
             case 40:
                 checkForCanvasBoundary(false, true, "😎");
-                checkForCanvasBoundary(false, true, "🤡");
+                // checkForCanvasBoundary(false, true, "🤡");
                 break;
             case 65:
             case 37:
                 checkForCanvasBoundary(true, false, "😎");
-                checkForCanvasBoundary(true, false, "🤡");
+                // checkForCanvasBoundary(true, false, "🤡");
                 break;
         }
     };
