@@ -1,6 +1,5 @@
 import Card from "react-bootstrap/Card";
-import { GameEntityListItem } from "./GameEntityComponent";
-
+import GameEntityListItem from "./GameEntityListItem";
 export default function InventoryList({ gameInfo }) {
 
     function listEntities(gameInfo_e) {
@@ -10,13 +9,15 @@ export default function InventoryList({ gameInfo }) {
         const entities = gameInfo_e.entities
         const entityListDisplay = [];
         Object.keys(entities).forEach((entity) => {
-            entityListDisplay.push(GameEntityListItem(entity));
+            entityListDisplay.push(entity);
         })
 
-        return entityListDisplay;
+        return entityListDisplay.map((item) => {
+            return (<GameEntityListItem key={`${item}`} entity={item} />);
+        });
     }
 
-
+    //entity information by looping over the whole entity list and using the key to access the entity information
 
 
 
