@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import GameCanvas from './GameCanvas'
+import { GameEntityListItem } from "./GameEntityComponent";
 
 
-export default function GameLogic({ gameInfo }) {
+export default function GameLogic({ gameInfo, entities }) {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
@@ -15,6 +16,9 @@ export default function GameLogic({ gameInfo }) {
         handleKey(event);
     }, []);
 
+
+
+    // console.log(allEntities)
 
     // controls start
 
@@ -81,7 +85,7 @@ export default function GameLogic({ gameInfo }) {
     //end get entities
 
 
-    return <GameCanvas canvasSize={canvasSize} movementStep={movementStep} player_x={player_x} player_y={player_y} />
+    return <GameCanvas canvasSize={canvasSize} movementStep={movementStep} player_x={player_x} player_y={player_y} entities={entities} />
 
 
 }

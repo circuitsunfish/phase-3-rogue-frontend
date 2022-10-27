@@ -15,7 +15,6 @@ function App() {
       .then((r) => r.json())
       .then((gameInfo) => {
         setGame(gameInfo)
-        console.log(gameInfo)
       }
       );
   }, []);

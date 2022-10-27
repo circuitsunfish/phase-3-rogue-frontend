@@ -1,4 +1,5 @@
 import Card from "react-bootstrap/Card";
+import { GameEntityListItem } from "./GameEntityComponent";
 
 export default function InventoryList({ gameInfo }) {
 
@@ -7,9 +8,12 @@ export default function InventoryList({ gameInfo }) {
             return null;
         }
         const entities = gameInfo_e.entities
-        debugger;
-        Object.keys(entities).forEach((entity) => console.log(entities[entity]))
+        const entityListDisplay = [];
+        Object.keys(entities).forEach((entity) => {
+            entityListDisplay.push(GameEntityListItem(entity));
+        })
 
+        return entityListDisplay;
     }
 
 
@@ -19,17 +23,16 @@ export default function InventoryList({ gameInfo }) {
     return (<div id="inventory-container">
         <Card id="entity-list" style={{ width: '12rem', margin: '1rem' }}>
             <Card.Title>Dungeon Population: </Card.Title>
-            <ul class="list-group list-group-flush">
-                {console.log(gameInfo)}
+            <ul className="list-group list-group-flush">
                 {listEntities(gameInfo)}
             </ul>
         </Card>
         <Card id="inventory-list" style={{ width: '12rem', margin: '1rem' }}>
             <Card.Title>When items are implemented, this section will show our items in a list (example below): </Card.Title>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Axe</li>
-                <li class="list-group-item">Sword</li>
-                <li class="list-group-item">Potion</li>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item">Axe</li>
+                <li className="list-group-item">Sword</li>
+                <li className="list-group-item">Potion</li>
             </ul>
         </Card></div>
     )
