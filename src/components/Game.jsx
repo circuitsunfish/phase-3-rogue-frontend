@@ -5,22 +5,8 @@ import InventoryList from './inventory-list';
 import Introduction from './introduction';
 import { GameEntityListItem } from "./GameEntityListItem";
 
-export default function Game({ gameInfo }) {
-    const entityInfoArr = [];
-    function listEntities(gameInfo_e) {
+export default function Game({ gameInfo, gameStart, entities }) {
 
-        if (!gameInfo) {
-            return null;
-        }
-        const entities = gameInfo_e.entities
-        Object.keys(entities).map((entity) => {
-            entityInfoArr.push(entities[entity].inherited_from_types_arr[0].default_emoji)
-        })
-    }
-
-
-    listEntities(gameInfo)
-    console.log(entityInfoArr)
 
     //GETS EMOJI - needs interpolations on entities.____.inheritted_from_types_arr.[0].default_emoji
     // console.log(gameInfo.entities.bed.inherited_from_types_arr[0])
@@ -29,7 +15,7 @@ export default function Game({ gameInfo }) {
     return (
         <div id="Game_Container">
             This is our container for game components
-            <GameLogic gameInfo={gameInfo} entities={entityInfoArr} />
+            <GameLogic gameInfo={gameInfo} entities={entities} gameStart={gameStart} />
             <HowToPlay />
             <Introduction />
             <InventoryList gameInfo={gameInfo} />
