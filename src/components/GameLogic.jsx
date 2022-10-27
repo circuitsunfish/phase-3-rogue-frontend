@@ -37,40 +37,50 @@ export default function GameLogic({ gameInfo, entities }) {
      * @param {boolean} x  - if true, we will check for boundary and move on x. if false, we will check and move on y.
      * @param {boolean} add - if true, we will check for positive movement. if false, we will check for negative movement.
      */
-    function checkForCanvasBoundary(x, add) {
+    function checkForCanvasBoundary(x, add, entity) {
         //TODO: vertical bounding moves player off the nice alignment in the grid.
         const lowerbound = 0 + movementStep * 0.25;
         const upperbound = canvasSize - movementStep * 0.75;
 
         const arithmaticMovement = add ? movementStep : -movementStep;
-        if (x) {
-            setPlayer_x((currentX) => {
-                return Math.min(Math.max(currentX + arithmaticMovement, lowerbound), upperbound)
-            });
+        function xSetter(xSetterCurrentX) {
+            return Math.min(Math.max(xSetterCurrentX + arithmaticMovement, lowerbound), upperbound)
         }
-        else {
-            setPlayer_y((currentY) => {
-                return Math.min(Math.max(currentY + arithmaticMovement, lowerbound), upperbound)
-            });
+        function ySetter(ySetterCurrentY) {
+            return Math.min(Math.max(ySetterCurrentY + arithmaticMovement, lowerbound), upperbound)
         }
+
+        switch (entity) {
+            case "🤡":
+                x ? setClown_x((currentX) => xSetter(currentX)) : setClown_y((currentY) => ySetter(currentY))
+                break;
+            case "😎":
+                x ? setPlayer_x((currentX) => xSetter(currentX)) : setPlayer_y((currentY) => ySetter(currentY))
+                break;
+        }
+
     }
     const handleKey = (e) => {
         switch (e.keyCode) {
             case 38:
             case 87:
-                checkForCanvasBoundary(false, false);
+                checkForCanvasBoundary(false, false, "😎");
+                checkForCanvasBoundary(false, false, "🤡");
                 break;
             case 68:
             case 39:
-                checkForCanvasBoundary(true, true);
+                checkForCanvasBoundary(true, true, "😎");
+                checkForCanvasBoundary(true, true, "🤡");
                 break;
             case 83:
             case 40:
-                checkForCanvasBoundary(false, true);
+                checkForCanvasBoundary(false, true, "😎");
+                checkForCanvasBoundary(false, true, "🤡");
                 break;
             case 65:
             case 37:
-                checkForCanvasBoundary(true, false);
+                checkForCanvasBoundary(true, false, "😎");
+                checkForCanvasBoundary(true, false, "🤡");
                 break;
         }
     };
