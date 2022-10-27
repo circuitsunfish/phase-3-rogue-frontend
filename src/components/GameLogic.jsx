@@ -6,6 +6,7 @@ export default function GameLogic() {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
+    const [allEntities, setAllEntities] = useState(null);
 
     console.log("rendering game canvas");
 
@@ -58,6 +59,23 @@ export default function GameLogic() {
     }, [handleKeyPress]);
 
     //controls end
+
+    //get entities to load into the game
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/get_entities`)
+            .then((r) => {
+                let responseJson = r.json();
+                return responseJson;
+            })
+            .then((entities) => {
+                setAllEntities(entities)
+                console.log(entities)
+            }
+            );
+    }, []);
+
+    //end get entities
 
 
     return <GameCanvas player_x={player_x} player_y={player_y} />
