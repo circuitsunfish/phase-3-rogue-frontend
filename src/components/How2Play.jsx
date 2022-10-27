@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card"
 
 export default function HowToPlay() {
     return (
-        <Card id="howToPlay" style={{ width: '12rem', margin: '1rem' }}>
+        <Card id="howToPlay" style={{ width: '2rem', margin: '1rem' }}>
             <Card.Body>
                 <Card.Title>How To Play</Card.Title>
                 <ol className="list-group list-group-flush" >

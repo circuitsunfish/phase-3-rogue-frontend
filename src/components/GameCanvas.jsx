@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
+import Card from "react-bootstrap/Card"
 import { gameEntityCanvasItem } from './CanvasGameEntityComponent'
+
 
 const GameCanvas = ({ bed_x, bed_y, canvasSize, clown_x, clown_y, entities, movementStep, player_x, player_y }) => {
     const canvasRef = useRef(null)
@@ -66,7 +68,13 @@ const GameCanvas = ({ bed_x, bed_y, canvasSize, clown_x, clown_y, entities, move
     }, [draw])
 
 
-    return <canvas height={canvasSize + 'px'} width={canvasSize + 'px'} ref={canvasRef} />
+    return (
+        <Card id="gameCanvasCard" style={{ width: '100%', margin: '1rem' }}>
+            <Card.Body>
+                <canvas height={canvasSize + 'px'} width={canvasSize + 'px'} ref={canvasRef} className="card-img" />
+            </Card.Body>
+        </Card>
+    )
 }
 
 export default GameCanvas;
