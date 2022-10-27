@@ -23,7 +23,19 @@ export default function GameLogic({ gameInfo, entities }) {
         handleKey(event);
     }, []);
 
+    useEffect(() => {
+        let xComparisonBed = player_x === bed_x;
+        let yComparisonBed = player_y === bed_y;
+        let xComparisonClown = player_x === clown_x;
+        let yComparisonClown = player_y === clown_y;
 
+        if (xComparisonClown && yComparisonClown) {
+            console.log("you got clowned");
+        }
+        else if (xComparisonBed && yComparisonBed) {
+            console.log("escaped to neverland");
+        }
+    }, [bed_x, bed_y, clown_x, clown_y, player_x, player_y]);
 
     // console.log(allEntities)
 
@@ -52,27 +64,12 @@ export default function GameLogic({ gameInfo, entities }) {
                 x ? setClown_x((currentX) => xSetter(currentX)) : setClown_y((currentY) => ySetter(currentY));
                 break;
             case "😎":
-                checkforEntityCollision();
                 x ? setPlayer_x((currentX) => xSetter(currentX)) : setPlayer_y((currentY) => ySetter(currentY));
                 break;
         }
 
     }
 
-    function checkforEntityCollision() {
-        console.log({ player_x, clown_x });
-        let xComparisonBed = player_x === bed_x;
-        let yComparisonBed = player_y === bed_y;
-        let xComparisonClown = player_x === clown_x;
-        let yComparisonClown = player_y === clown_y;
-
-        if (xComparisonClown && yComparisonClown) {
-            console.log("you got clowned");
-        }
-        else if (xComparisonBed && yComparisonBed) {
-            console.log("escaped to neverland");
-        }
-    }
     const handleKey = (e) => {
         switch (e.keyCode) {
             case 38:
