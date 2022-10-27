@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { gameEntityCanvasItem } from './CanvasGameEntityComponent'
 
-const GameCanvas = ({ canvasSize, movementStep, player_x, player_y, entities }) => {
+const GameCanvas = ({ bed_x, bed_y, canvasSize, clown_x, clown_y, entities, movementStep, player_x, player_y }) => {
     const canvasRef = useRef(null)
 
     const draw = ctx => {
@@ -28,14 +28,29 @@ const GameCanvas = ({ canvasSize, movementStep, player_x, player_y, entities }) 
         }
         // end grid
 
-        //experimentalmoji
-        //TODO: replace ninja with player's entity emoji
+
         //make func to draw with f(item, x_coord, y_coord)
         entities.forEach((item) => {
-            ctx.fillText(item, player_x, player_y);
+            let pos_x = 0;
+            let pos_y = 0;
+            switch (item) {
+                case "🛌":
+                    pos_x = bed_x;
+                    pos_y = bed_y;
+                    break;
+                case "🤡":
+                    pos_x = clown_x;
+                    pos_y = clown_y;
+                    break;
+                case "😎":
+                    pos_x = player_x;
+                    pos_y = player_y;
+                    break;
+                default:
+                    console.log("What do you think you're doing??");
+            }
+            ctx.fillText(item, pos_x, pos_y);
         })
-        // ctx.fillText('🥷', player_x, player_y);
-
 
         ctx.fillText(`Canvas Height: ${ctx.canvas.height}`, 10, 10)
         ctx.fillText(`Canvas Width: ${ctx.canvas.width}`, movementStep, movementStep)

@@ -7,6 +7,16 @@ export default function GameLogic({ gameInfo, entities }) {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
+
+    const [clown_x, setClown_x] = useState(225);
+    const [clown_y, setClown_y] = useState(275);
+
+    const [bed_x, setBed_x] = useState(545);
+    const [bed_y, setBed_y] = useState(555);
+
+    console.log({ player_x, player_y });
+
+
     const [allEntities, setAllEntities] = useState(null);
 
     const canvasSize = 600;
@@ -85,7 +95,16 @@ export default function GameLogic({ gameInfo, entities }) {
     //end get entities
 
 
-    return <GameCanvas canvasSize={canvasSize} movementStep={movementStep} player_x={player_x} player_y={player_y} entities={entities} />
+    return <GameCanvas
+        canvasSize={canvasSize}
+        entities={entities}
+        movementStep={movementStep}
+
+        bed_x={bed_x} bed_y={bed_y}
+        clown_x={clown_x} clown_y={clown_y}
+        player_x={player_x} player_y={player_y}
+
+    />
 
 
 }
