@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 
 const GameCanvas = ({ canvasSize, movementStep, player_x, player_y }) => {
-    console.log({ player_x })
     const canvasRef = useRef(null)
 
     const draw = ctx => {

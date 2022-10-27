@@ -11,12 +11,8 @@ export default function GameLogic() {
     const canvasSize = 600;
     const movementStep = 20;
 
-    console.log("rendering game canvas");
-
     const handleKeyPress = useCallback((event) => {
-        console.log(`Key pressed: ${event.key}`);
         handleKey(event);
-        console.log({ player_x, player_y });
     }, []);
 
 
@@ -28,7 +24,6 @@ export default function GameLogic() {
      * @param {boolean} add - if true, we will check for positive movement. if false, we will check for negative movement.
      */
     function checkForCanvasBoundary(x, add) {
-
         //TODO: vertical bounding moves player off the nice alignment in the grid.
         const lowerbound = 0 + movementStep * 0.25;
         const upperbound = canvasSize - movementStep * 0.75;
@@ -44,11 +39,7 @@ export default function GameLogic() {
                 return Math.min(Math.max(currentY + arithmaticMovement, lowerbound), upperbound)
             });
         }
-
-
     }
-
-
     const handleKey = (e) => {
         switch (e.keyCode) {
             case 38:
