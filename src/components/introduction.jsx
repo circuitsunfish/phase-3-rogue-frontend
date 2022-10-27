@@ -1,4 +1,4 @@
-export default function Introduction(){
+export default function Introduction() {
     return (
         <div id="introduction">
             <h1>HISTORY</h1>
