@@ -1,4 +1,5 @@
 import CardGroup from 'react-bootstrap/CardGroup';
+import { Stack } from 'react-bootstrap';
 import GameareaPlaceholder from "./GameareaPlaceholder"
 import GameLogic from "./GameLogic";
 import HowToPlay from "./How2Play"
@@ -15,12 +16,12 @@ export default function Game({ gameInfo, gameStart, entities, saveInfo }) {
     // console.log(entityListDisplay)
     return (
         <div id="Game_Container">
-            <GameLogic gameInfo={gameInfo} entities={entities} gameStart={gameStart} saveInfo={saveInfo} />
             <CardGroup>
                 <InventoryList gameInfo={gameInfo} />
-                <Introduction />
+                <GameLogic gameInfo={gameInfo} entities={entities} gameStart={gameStart} saveInfo={saveInfo} />
                 <HowToPlay />
             </CardGroup>
+            <Introduction />
         </div>
     )
 }

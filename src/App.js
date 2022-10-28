@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react"
 import TitleBar from './components/title-bar';
-import External from './components/external-links';
 import NavBar from './components/NavBar';
 import Game from './components/Game'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,18 +25,18 @@ function App() {
 
 
   function listEntities(gameInfo_e) {
-      if (!gameInfo) {
-          return null;
-      }
-      const entities = gameInfo_e.entities
-      console.log(entities)
-      Object.keys(entities).map((entity) => {
+    if (!gameInfo) {
+      return null;
+    }
+    const entities = gameInfo_e.entities
+    console.log(entities)
+    Object.keys(entities).map((entity) => {
 
-          entityInfoArr.push(entities[entity].inherited_from_types_arr[0].default_emoji)
-      })
+      entityInfoArr.push(entities[entity].inherited_from_types_arr[0].default_emoji)
+    })
   }
 
-  
+
 
   listEntities(gameInfo)
 
@@ -74,14 +73,13 @@ function App() {
   }
   // if (!game) return <h2>Loading game data...</h2>;
   console.log(entityInfoArrToSave)
-  
+
 
   return (
     <div className="App">
       <TitleBar />
       <NavBar startGame={startGame} saveGame={saveGame} />
-      <Game gameInfo={gameInfo} gameStart={gameStart} entities={entityInfoArr} saveInfo={getSaveInfo}/>
-      <External />
+      <Game gameInfo={gameInfo} gameStart={gameStart} entities={entityInfoArr} saveInfo={getSaveInfo} />
     </div>
   );
 }
