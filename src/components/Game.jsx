@@ -5,7 +5,7 @@ import InventoryList from './inventory-list';
 import Introduction from './introduction';
 import { GameEntityListItem } from "./GameEntityListItem";
 
-export default function Game({ gameInfo, gameStart, entities }) {
+export default function Game({ gameInfo, gameStart, entities, saveInfo }) {
 
 
     //GETS EMOJI - needs interpolations on entities.____.inheritted_from_types_arr.[0].default_emoji
@@ -15,7 +15,7 @@ export default function Game({ gameInfo, gameStart, entities }) {
     return (
         <div id="Game_Container">
             This is our container for game components
-            <GameLogic gameInfo={gameInfo} entities={entities} gameStart={gameStart} />
+            <GameLogic gameInfo={gameInfo} entities={entities} gameStart={gameStart} saveInfo={saveInfo}/>
             <HowToPlay />
             <Introduction />
             <InventoryList gameInfo={gameInfo} />

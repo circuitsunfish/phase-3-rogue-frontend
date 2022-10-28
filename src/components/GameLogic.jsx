@@ -5,13 +5,16 @@ import { GameEntityListItem } from "./GameEntityListItem";
 import GameEnd from './GameEnd';
 
 
-export default function GameLogic({ gameInfo, entities, gameStart }) {
+export default function GameLogic({ gameInfo, entities, gameStart, saveInfo}) {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
 
     const [clown_x, setClown_x] = useState(225);
-    const [clown_y, setClown_y] = useState(275);
+    const [clown_y, setClown_y] = useState(275); 
+
+    const [clownCoord, setClownCoord] = useState({clownPOS_x: clown_x, clownPOS_y: clown_y})
+    const [playerCoord, setPlayerCoord] = useState({playerPOS_x: player_x, playerPOS_x: player_y})
 
     const [bed_x, setBed_x] = useState(545);
     const [bed_y, setBed_y] = useState(555);
@@ -118,6 +121,12 @@ export default function GameLogic({ gameInfo, entities, gameStart }) {
         };
     }, [handleKeyPress]);
 
+
+    useEffect(() => {
+        let savedInfo = {player: {emoji: "😎", position:{x: player_x, y: player_y}}, 
+                         clown: {emoji: "🤡", position:{x: clown_x, y: clown_y} }}
+        saveInfo(savedInfo)
+    }, [bed_x, bed_y, clown_x, clown_y, player_x, player_y])
     //controls end
 
     //get entities to load into the game
@@ -125,8 +134,10 @@ export default function GameLogic({ gameInfo, entities, gameStart }) {
     //grab this out of the start game json response
     // console.log(gameInfo.entities)
 
+    // console.log(gameEndDisplay)
     return (
-        (gameEndDisplay ^ gameStart) ?
+        (gameStart ^ gameEndDisplay) ?
+            
             <GameCanvas
                 canvasSize={canvasSize}
                 entities={entities}
@@ -135,8 +146,11 @@ export default function GameLogic({ gameInfo, entities, gameStart }) {
                 clown_x={clown_x} clown_y={clown_y}
                 player_x={player_x} player_y={player_y}
             />
+
             :
+
             <GameEnd />
+            
     )
 
 
