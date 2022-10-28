@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from "react-bootstrap/Navbar";
 
-function NavBar({startGame, saveGame}) {
+function NavBar({startGame, saveGame, deleteOptions, sessionID}) {
     
     function onClickNewGame() {
         console.log("Start new game")
@@ -14,6 +14,10 @@ function NavBar({startGame, saveGame}) {
         saveGame()
     }
     
+    function onOptionsClick() {
+        console.log("This is my: " + sessionID)
+        deleteOptions(sessionID)
+    }
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -24,7 +28,7 @@ function NavBar({startGame, saveGame}) {
                         <Nav.Link href="#newgame" onClick={onClickNewGame}>New Game</Nav.Link>
                         <Nav.Link href="#loadgame" >Load Game</Nav.Link>
                         <Nav.Link href="#savegame" onClick={onSaveGame}>Save Game</Nav.Link>
-                        <Nav.Link href="#option">Options</Nav.Link>
+                        <Nav.Link href="#option"onClick={onOptionsClick}>Options</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

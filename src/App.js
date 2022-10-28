@@ -31,7 +31,6 @@ function App() {
     const entities = gameInfo_e.entities
     console.log(entities)
     Object.keys(entities).map((entity) => {
-
       entityInfoArr.push(entities[entity].inherited_from_types_arr[0].default_emoji)
     })
   }
@@ -44,6 +43,7 @@ function App() {
     setGameStart(condition)
   })
 
+  
   const saveGame = (() => {
     fetch(`http://localhost:9292/save_game`, {
       method: "POST",
@@ -62,7 +62,6 @@ function App() {
     })
   })
 
-  console.log(gameInfo)
 
   function getSaveInfo(allInfo) {
     // console.log(allInfo)
@@ -74,12 +73,20 @@ function App() {
   // if (!game) return <h2>Loading game data...</h2>;
   console.log(entityInfoArrToSave)
 
+  //sends delete request based on id
+  const deleteFromOptions = ((id) =>{
+    fetch(`http://localhost:9292/delete_save_game/${id+1}`, {
+      method: "DELETE",
+    })
+  })
+
+  
 
   return (
     <div className="App">
       <TitleBar />
-      <NavBar startGame={startGame} saveGame={saveGame} />
-      <Game gameInfo={gameInfo} gameStart={gameStart} entities={entityInfoArr} saveInfo={getSaveInfo} />
+      <NavBar sessionID={gameStart ? gameInfo.newSession.id : null} startGame={startGame} saveGame={saveGame} deleteOptions={deleteFromOptions}/>
+      <Game gameInfo={gameInfo} gameStart={gameStart} entities={entityInfoArr} saveInfo={getSaveInfo} deleteOptions={deleteFromOptions}/>
     </div>
   );
 }
