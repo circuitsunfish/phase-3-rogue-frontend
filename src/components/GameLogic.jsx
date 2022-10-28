@@ -1,19 +1,27 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
+import { useDebugValue } from 'react';
 import GameCanvas from './GameCanvas'
 import { GameEntityListItem } from "./GameEntityListItem";
+import GameEnd from './GameEnd';
 
 
-export default function GameLogic({ gameInfo, entities }) {
+export default function GameLogic({ gameInfo, entities, gameStart, saveInfo}) {
 
     const [player_x, setPlayer_x] = useState(85);
     const [player_y, setPlayer_y] = useState(75);
 
     const [clown_x, setClown_x] = useState(225);
-    const [clown_y, setClown_y] = useState(275);
+    const [clown_y, setClown_y] = useState(275); 
+
+    const [clownCoord, setClownCoord] = useState({clownPOS_x: clown_x, clownPOS_y: clown_y})
+    const [playerCoord, setPlayerCoord] = useState({playerPOS_x: player_x, playerPOS_x: player_y})
 
     const [bed_x, setBed_x] = useState(545);
     const [bed_y, setBed_y] = useState(555);
 
+
+    const [gameEndCon, setGameEndCon] = useState({ isDead: false, isWin: false });
+    const [gameEndDisplay, setGameEndDisplay] = useState(true);
     const [allEntities, setAllEntities] = useState(null);
 
     const canvasSize = 600;
@@ -31,11 +39,19 @@ export default function GameLogic({ gameInfo, entities }) {
 
         if (xComparisonClown && yComparisonClown) {
             console.log("you got clowned");
+            setGameEndCon({ ...gameEndCon, isDead: true })
         }
         else if (xComparisonBed && yComparisonBed) {
             console.log("escaped to neverland");
+            setGameEndCon({ ...gameEndCon, isWin: true })
         }
     }, [bed_x, bed_y, clown_x, clown_y, player_x, player_y]);
+
+    useEffect(() => {
+        setGameEndDisplay(!gameEndDisplay)
+    }, [gameEndCon])
+
+
 
     // console.log(allEntities)
 
@@ -105,6 +121,12 @@ export default function GameLogic({ gameInfo, entities }) {
         };
     }, [handleKeyPress]);
 
+
+    useEffect(() => {
+        let savedInfo = {player: {emoji: "😎", position:{x: player_x, y: player_y}}, 
+                         clown: {emoji: "🤡", position:{x: clown_x, y: clown_y} }}
+        saveInfo(savedInfo)
+    }, [bed_x, bed_y, clown_x, clown_y, player_x, player_y])
     //controls end
 
     //get entities to load into the game
@@ -112,19 +134,24 @@ export default function GameLogic({ gameInfo, entities }) {
     //grab this out of the start game json response
     // console.log(gameInfo.entities)
 
-    //end get entities
+    // console.log(gameEndDisplay)
+    return (
+        (gameStart ^ gameEndDisplay) ?
+            
+            <GameCanvas
+                canvasSize={canvasSize}
+                entities={entities}
+                movementStep={movementStep}
+                bed_x={bed_x} bed_y={bed_y}
+                clown_x={clown_x} clown_y={clown_y}
+                player_x={player_x} player_y={player_y}
+            />
 
+            :
 
-    return <GameCanvas
-        canvasSize={canvasSize}
-        entities={entities}
-        movementStep={movementStep}
-
-        bed_x={bed_x} bed_y={bed_y}
-        clown_x={clown_x} clown_y={clown_y}
-        player_x={player_x} player_y={player_y}
-
-    />
+            <GameEnd />
+            
+    )
 
 
 }

@@ -6,6 +6,8 @@ import { gameEntityCanvasItem } from './CanvasGameEntityComponent'
 const GameCanvas = ({ bed_x, bed_y, canvasSize, clown_x, clown_y, entities, movementStep, player_x, player_y }) => {
     const canvasRef = useRef(null)
 
+
+
     const draw = ctx => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
